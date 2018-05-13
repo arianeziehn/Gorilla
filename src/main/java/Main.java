@@ -12,11 +12,12 @@ import java.util.List;
 public class Main {
 
     private static List<String> schema = new ArrayList<String>();
+    private static List<String> target = new ArrayList<String>();
 
     public static void main(String[] args) {
 
-        String patternPath = "/home/fwille/Gorilla/Gorilla/src/main/resources/imdb.csv";
-        String patternPath2 = "/home/fwille/Gorilla/Gorilla/src/main/resources/rotten_tomatoes.csv";
+        String patternPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdb.csv";
+        String patternPath2 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoes.csv";
 
         readData(patternPath);
         readData(patternPath2);
@@ -31,13 +32,14 @@ public class Main {
 
     private static void cleanSchema() {
         ArrayList<String> discarded = new ArrayList<>();
+        ArrayList<String> discarded2 = new ArrayList<>();
 
         for (int i = 0; i < schema.size(); i++){
             String one = schema.get(i);
-            for (int j = i+1; j < schema.size(); j++){
-                String two = schema.get(j);
+            for (int j = 0; j < target.size(); j++){
+                String two = target.get(j);
                 //System.out.println("out cleaning : " + one + ", " + two );
-                if(!one.equals(two)){
+                //if(!one.equals(two)){
                     //System.out.println("out cleaning : " + one + ", " + two );
                     MongeElkan metric = new MongeElkan();
                     Levenshtein metric2 = new Levenshtein();
@@ -58,16 +60,22 @@ public class Main {
 
                         if (result > 0.8 && result2 > 0.4) {
                             discarded.add(two);
-                            //schema.remove(two);
+                            discarded2.add(one); //schema.remove(two);
                         }
 
-                }
+               // }
 
 
             }
         }
-
-        schema.removeAll(discarded);
+        System.out.println("matches between sources and target :" + discarded);
+        target.removeAll(discarded);
+        System.out.println("distinct attributes of target :" +target);
+        ArrayList<String> schemaDistinct = new ArrayList<String>();
+        schemaDistinct.addAll(schema);
+        schemaDistinct.removeAll(discarded2);
+        System.out.println("distinct attributes of source :" + schemaDistinct);
+        schema.addAll(target);
         System.out.println(schema);
 
     }
@@ -92,12 +100,13 @@ public class Main {
         }
     }
     private static void createSchema(String[] split) {
+        boolean targetFile = schema.isEmpty();
         for(int i = 0; i < split.length; i++){
             // first cleaning:
             // lower case and remove empty fields
             String attribute = split[i].trim().toLowerCase().replace('"', ' ').replace(" ", "");
-            if(!schema.contains(attribute))
-            schema.add(attribute);
+            if(!targetFile) target.add(attribute);
+            else schema.add(attribute);
         }
         System.out.println(schema);
     }
