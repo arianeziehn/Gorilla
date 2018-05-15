@@ -12,6 +12,7 @@ import java.util.List;
 public class Main {
 
     private static List<String> schema = new ArrayList<String>();
+    private static List<String> source = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -37,7 +38,7 @@ public class Main {
             for (int j = i+1; j < schema.size(); j++){
                 String two = schema.get(j);
                 //System.out.println("out cleaning : " + one + ", " + two );
-                if(!one.equals(two)){
+                //if(!one.equals(two)){
                     //System.out.println("out cleaning : " + one + ", " + two );
                     MongeElkan metric = new MongeElkan();
                     Levenshtein metric2 = new Levenshtein();
@@ -61,7 +62,7 @@ public class Main {
                             //schema.remove(two);
                         }
 
-                }
+                //}
 
 
             }
@@ -96,7 +97,7 @@ public class Main {
             // first cleaning:
             // lower case and remove empty fields
             String attribute = split[i].trim().toLowerCase().replace('"', ' ').replace(" ", "");
-            if(!schema.contains(attribute))
+            //if(!schema.contains(attribute))
             schema.add(attribute);
         }
         System.out.println(schema);
