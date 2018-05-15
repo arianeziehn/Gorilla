@@ -16,4 +16,8 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+    <!-- https://mvnrepository.com/artifact/uk.ac.shef.wit/simmetrics -->
+
+    </dependencies>
 </project>
