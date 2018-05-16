@@ -4,153 +4,201 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.MongeElkan;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class InstanceBasedMatching {
 
-    private static List<String> schema = new ArrayList<String>();
-    private static List<String> source = new ArrayList<>();
-
-    private static HashMap imdb = new HashMap();
-    private static HashMap rottenTomatoes = new HashMap();
+    private static List<String> schemaSource = new ArrayList<String>();
+    private static List<String> schemaTarget = new ArrayList<>();
+    private static HashMap imdb = new HashMap<String, HashSet<Integer>>();
+    private static HashMap rottenTomatoes = new HashMap<String, HashSet<Integer>>();
+    static int maxColumnSource;
+    static int maxColumnTarget;
 
     public static void main(String[] args) {
 
-        String patternPath = "/home/fwille/Gorilla/Gorilla/src/main/resources/imdbtest2.csv";
-        String patternPath2 = "/home/fwille/Gorilla/Gorilla/src/main/resources/rotten_tomatoestest2.csv";
-        int maxColumnImdb = 14;
-        int maxColumnRt = 17;
-
-        imdb = readData(patternPath);
-        rottenTomatoes = readData(patternPath2);
-
-        for (int columncounterImdb = 0; columncounterImdb<=maxColumnImdb; columncounterImdb++){
-            //System.out.println(imdb.containsValue(columncounter));
-            if (imdb.containsValue(columncounterImdb)){
-                float resultME = 0f;
-                int count =0;
-                Iterator keySet = imdb.keySet().iterator();
-                while(keySet.hasNext()) {
-                    String imdbKey = keySet.next().toString();
-                    for (int columncounterRt = 0; columncounterRt<=maxColumnRt; columncounterRt++){
-                        if(rottenTomatoes.containsValue(columncounterRt)){
-                            Iterator keySetRt = rottenTomatoes.keySet().iterator();
-                            while (keySetRt.hasNext()){
-                                String rtKey = keySet.next().toString();
-                                MongeElkan mE = new MongeElkan();
-                                resultME += mE.getSimilarity(imdbKey, rtKey);
-                                count++;
-                            }
-                        }
-                    }
-                }
-                double sim = resultME/count;
-                System.out.println(sim +", " +columncounterImdb);
-            }
-        }
+        long timeStart = System.currentTimeMillis();
+        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdbtest2.csv";
+        String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoestest2.csv";
+        //String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdb_small.csv";
+        //String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rt_small_adj.csv";
+        imdb = readData(sourcePath,true);
+        rottenTomatoes = readData(targetPath, false);
 
 
-        cleanSchema();
+        HashMap match = new HashMap<Integer, HashMap<Integer,Integer>>( );
+        HashMap finalMatch = new HashMap<Integer, HashMap<Integer,Integer>>( );
+        List<Integer> assignColRT = new ArrayList<>();
+        List<Integer> assignColImdb = new ArrayList<>();
 
-
-
-
-
-	// write your code here
-    }
-
-    private static void cleanSchema() {
-        ArrayList<String> discarded = new ArrayList<>();
-
-        for (int i = 0; i < schema.size(); i++){
-            String one = schema.get(i);
-            for (int j = i+1; j < schema.size(); j++){
-                String two = schema.get(j);
-                //System.out.println("out cleaning : " + one + ", " + two );
-                //if(!one.equals(two)){
-                    //System.out.println("out cleaning : " + one + ", " + two );
-                    MongeElkan metric = new MongeElkan();
-                    Levenshtein metric2 = new Levenshtein();
-                    float result = metric.getSimilarity(one, two);
-                    float result2 = metric2.getSimilarity(one, two);
-                    //System.out.println("Monge-Elkan Similarity: " + result + ", Levenshtein Similarity: " + result2);
-                    //if(one.contains(two) || two.contains(one)){
-                    //    System.out.println("im cleaning : " + one + ", " + two );
-                    //    if(one.length() > two.length()){
-                    //        discarded.add(one);
-                            //schema.remove(one);
-                    //    }
-                    //    else{
-                    //        discarded.add(two);
-                            //schema.remove(two);
-                    //    }
-                    //}
-
-                        if (result > 0.8 && result2 > 0.4) {
-                            discarded.add(two);
-                            //schema.remove(two);
-                        }
-
-                //}
-
-
-            }
-        }
-
-        schema.removeAll(discarded);
-        System.out.println(schema);
-
-    }
-
-    private static HashMap readData(String filepath){
-        HashMap dataBase = new HashMap();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
-            boolean header = true;
-            String sCurrentLine;
-
-
-
-
-            while ((sCurrentLine = br.readLine()) != null) {
-                String[] split = sCurrentLine.split(";");
-                if(!header) {
-                    for (int counter = 0; counter < split.length; counter++) {
-                        String attribute = split[counter].trim().toLowerCase().replace('"', ' ').replace(" ", "");
-                        //header = false;
-                        if(!attribute.equals("")) {
-                            dataBase.put(attribute, counter);
-                        }
-                        //counter++;
-                        //System.out.println(split[0]);
-                    }
-                }
-                header = false;
-                //System.out.println(split[0]);
-
-            }
-
-            System.out.println("fertig");
-/**
-            while ((sCurrentLine = br.readLine()) != null) {
-                String[] split = sCurrentLine.split(",");
-                if(!header){
-                    createSchema(split);
-                    //header = false;
-                    column.put(split[0], counter);
+        Iterator keySetImbd = imdb.keySet().iterator( );
+        while (keySetImbd.hasNext()) {
+            String imdbKey = keySetImbd.next( ).toString( );
+            if (rottenTomatoes.containsKey(imdbKey)) {
+                for(Integer col : ((HashSet<Integer>)imdb.get(imdbKey))){
+                HashMap<Integer, Integer> aMatch = (HashMap<Integer, Integer>) match.getOrDefault(col, new HashMap<>());
+                for(Integer dummy : (HashSet<Integer>) rottenTomatoes.get(imdbKey) ){
+                    int counter = aMatch.getOrDefault(dummy, 0);
                     counter++;
-                    //System.out.println(split[0]);
+                aMatch.put(dummy, counter);
+                match.put(col, aMatch);
+                if(counter > 1000){
+                    HashMap<Integer, Integer> result = new HashMap<Integer,Integer>();
+                    result.put(dummy, counter);
+                    finalMatch.put(col, result);
+                    if(!assignColImdb.contains(col))assignColImdb.add(col);
+                    if(!assignColRT.contains(dummy))assignColRT.add(dummy);
                 }
-                header = false;
-                //System.out.println(split[0]);
+                }
+                }
+            }
+        }
+
+        for (int columncounterImdb = 0; columncounterImdb <= maxColumnSource; columncounterImdb++) {
+
+            if (match.containsKey(columncounterImdb)) {
+                HashMap<Integer, Integer> aMatch = (HashMap<Integer, Integer>) match.get(columncounterImdb);
+                if (aMatch.size( ) == 1) {
+                    finalMatch.put(columncounterImdb, aMatch);
+                    if(!assignColImdb.contains(columncounterImdb)) assignColImdb.add(columncounterImdb);
+                    assignColRT.addAll(aMatch.keySet());
+                }
+            }
+        }
+
+        System.out.println(" Previously known matches: " + match);
+        System.out.println(" Previously known Finalmatches: " + finalMatch);
+        System.out.println(" Already assign colImdb: " + assignColImdb);
+        System.out.println(" Already assign colRT: " + assignColRT);
+
+
+        for (int columncounterImdb = 1; columncounterImdb <= maxColumnSource; columncounterImdb++) {
+
+            if (!assignColImdb.contains(columncounterImdb)) {
+                float resultME = 0f;
+                float resultL = 0f;
+                int count = 0;
+                double simFinalME = 0.0;
+                double simFinalL = 0.0;
+                int colCounterME = 0;
+                int colCounterL = 0;
+
+                Iterator keySetImdb = imdb.keySet( ).iterator( );
+                // here we check for each word of the dictionary
+                while (keySetImdb.hasNext( )) {
+                    //current MapEntry
+                    String pairImdb = keySetImdb.next( ).toString( );
+
+                    if (imdb.get(pairImdb).toString( ).contains(columncounterImdb + "")) {
+                        //System.out.println("GOT IT"+imdb.get(pairImdb).toString()+ ","+(columncounterImdb+""));
+
+                        for (int columncounterRt = 1; columncounterRt <= maxColumnTarget; columncounterRt++) {
+                            if (!assignColRT.contains(columncounterRt)) {
+                                Iterator keySetRt = rottenTomatoes.keySet( ).iterator( );
+                                while (keySetRt.hasNext( )) {
+
+                                    String pairRt = keySetRt.next( ).toString( );
+
+                                    if (rottenTomatoes.get(pairRt).toString( ).contains(columncounterRt + "")) {
+
+                                        MongeElkan mE = new MongeElkan( );
+                                        Levenshtein metricL = new Levenshtein( );
+                                        resultME += mE.getSimilarity(pairImdb, pairRt);
+                                        resultL += metricL.getSimilarity(pairImdb, pairRt);
+                                        count++;
+                                    }
+
+                                }
+                                double simME = resultME / (double) count;
+                                double simL = resultL / (double) count;
+
+                                if (simME > simFinalME) {
+                                    simFinalME = simME;
+                                    colCounterME = columncounterRt;
+                                }
+                                if (simL > simFinalL) {
+                                    simFinalL = simL;
+                                    colCounterL = columncounterRt;
+                                }
+
+                            }
+                            long currentTime2 = System.currentTimeMillis();
+                            System.out.println("----FINISHED col " + columncounterRt + " for" +columncounterImdb +"in " + (currentTime2-timeStart));
+                        }
+
+                    }// for coloumnRT
+
+                }
+
+                HashMap<Integer, Integer> result = new HashMap<Integer, Integer>( );
+                System.out.println("------------" + columncounterImdb + "--------------");
+                System.out.println("simME " + simFinalME + ", " + colCounterME);
+                System.out.println("simL " + simFinalL + ", " + colCounterL);
+                long currentTime = System.currentTimeMillis();
+                if (simFinalME > 0.5 && simFinalL > 0.25) {
+                    if(simFinalME > simFinalL) {
+                        result.put(colCounterME, 0);
+                        assignColRT.add(colCounterME);
+                        finalMatch.put(columncounterImdb, result);
+                    }
+                    else{
+                        result.put(colCounterL, 0);
+                        assignColRT.add(colCounterL);
+                        finalMatch.put(columncounterImdb, result);
+                    }
+
+                }
 
             }
-*/
-           //System.out.println(column.toString());
+            long currentTime = System.currentTimeMillis();
+            System.out.println("----FINISHED col " + columncounterImdb + "in " + (currentTime-timeStart));
+        }
+        long timeEnd = System.currentTimeMillis();
+        System.out.println(finalMatch);
+        System.out.println(timeEnd-timeStart);
+        /*
 
+        current output for small sets from Henrik && it takes very long for colimdb 6, the rest is relativly fast
+        besseres umgehen mit den sim werten
+
+        wanted result with test2 datasets: (1 id) 2->2 (name), 3->3 (year), 4->4 (releaseDate),5->5 (Director),6->6(Creator)
+        7->8(cast), 8->11(duration), 9->12(ratingvalue), 13->17 (description)
+        !!! Achtung: Hier entfällt immer col 0 in 4 for schleifen, weil da noch eine Zeilennummer ist
+         */
+
+    }
+
+
+
+    private static HashMap readData(String filepath, boolean source){
+        HashMap dataBase = new HashMap();
+        boolean header = true;
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+
+                String[] split = sCurrentLine.split(";");
+                if(source) maxColumnSource = split.length;
+                else maxColumnTarget = split.length;
+
+                if(!header) {
+                    for (int counter = 1; counter < split.length; counter++) {
+                        String attribute = split[counter].trim().toLowerCase().replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-","");
+
+
+                        if(!attribute.equals("") && !attribute.equals(" ")) {
+                            HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(attribute, new HashSet<>());
+                            aMatch.add(counter);
+                            dataBase.put(attribute, aMatch);
+                        }
+                    }
+                }
+                else{
+                    createSchema(split);
+                }
+                header = false;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,14 +206,19 @@ public class InstanceBasedMatching {
         return dataBase;
 
     }
+
+
     private static void createSchema(String[] split) {
-        for(int i = 0; i < split.length; i++){
+        boolean source = schemaSource.isEmpty();
+        for(int i = 1; i < split.length; i++){
             // first cleaning:
             // lower case and remove empty fields
             String attribute = split[i].trim().toLowerCase().replace('"', ' ').replace(" ", "");
-            //if(!schema.contains(attribute))
-            schema.add(attribute);
+            if(!source) {
+                schemaTarget.add(attribute);
+            }
+            else schemaSource.add(attribute);
         }
-        System.out.println(schema);
+
     }
 }
