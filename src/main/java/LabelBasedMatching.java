@@ -16,8 +16,8 @@ public class LabelBasedMatching {
 
         long timeStart = System.currentTimeMillis();
         // path of source and target file
-        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdb.csv";
-        String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoes.csv";
+        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdbtest3.csv";
+        String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoestest3.csv";
 
         // create both global schemas
         readSchema(sourcePath);
@@ -77,7 +77,7 @@ public class LabelBasedMatching {
             String sCurrentLine;
             int counter = 0;
             while ((sCurrentLine = br.readLine()) != null && counter < 1) {
-                String[] split = sCurrentLine.split(",");
+                String[] split = sCurrentLine.split(";");
                 if(header){
                     createSchema(split);
                     header = false;
