@@ -12,37 +12,42 @@ public class InstanceBasedMatching {
     private static List<String> schemaTarget = new ArrayList<>();
     private static HashMap imdb = new HashMap<String, HashSet<Integer>>();
     private static HashMap rottenTomatoes = new HashMap<String, HashSet<Integer>>();
+    private static HashMap imdb1 = new HashMap<String, HashSet<Integer>>();
+    private static HashMap rottenTomatoes1 = new HashMap<String, HashSet<Integer>>();
     static int maxColumnSource;
     static int maxColumnTarget;
 
     public static void main(String[] args) {
 
         long timeStart = System.currentTimeMillis();
-        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdbtest2.csv";
-        String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoestest2.csv";
-        //String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdb_small.csv";
-        //String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rt_small_adj.csv";
-        imdb = readData(sourcePath,true);
+        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\randomImdbres.csv";
+        String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\randomRTres.csv";
+        String sourcePath1 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdbtest3.csv";
+        String targetPath1 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoestest3.csv";
+        imdb1 = readDataBig(sourcePath1,true);
+        rottenTomatoes1 = readDataBig(targetPath1, false);
+        imdb = readData(sourcePath,false);
         rottenTomatoes = readData(targetPath, false);
 
+        System.out.println(imdb);
 
         HashMap match = new HashMap<Integer, HashMap<Integer,Integer>>( );
         HashMap finalMatch = new HashMap<Integer, HashMap<Integer,Integer>>( );
         List<Integer> assignColRT = new ArrayList<>();
         List<Integer> assignColImdb = new ArrayList<>();
 
-        Iterator keySetImbd = imdb.keySet().iterator( );
+        Iterator keySetImbd = imdb1.keySet().iterator( );
         while (keySetImbd.hasNext()) {
             String imdbKey = keySetImbd.next( ).toString( );
-            if (rottenTomatoes.containsKey(imdbKey)) {
-                for(Integer col : ((HashSet<Integer>)imdb.get(imdbKey))){
+            if (rottenTomatoes1.containsKey(imdbKey)) {
+                for(Integer col : ((HashSet<Integer>)imdb1.get(imdbKey))){
                 HashMap<Integer, Integer> aMatch = (HashMap<Integer, Integer>) match.getOrDefault(col, new HashMap<>());
-                for(Integer dummy : (HashSet<Integer>) rottenTomatoes.get(imdbKey) ){
+                for(Integer dummy : (HashSet<Integer>) rottenTomatoes1.get(imdbKey) ){
                     int counter = aMatch.getOrDefault(dummy, 0);
                     counter++;
                 aMatch.put(dummy, counter);
                 match.put(col, aMatch);
-                if(counter > 1000){
+                if(counter >= 400){
                     HashMap<Integer, Integer> result = new HashMap<Integer,Integer>();
                     result.put(dummy, counter);
                     finalMatch.put(col, result);
@@ -71,10 +76,13 @@ public class InstanceBasedMatching {
         System.out.println(" Already assign colImdb: " + assignColImdb);
         System.out.println(" Already assign colRT: " + assignColRT);
 
+        Iterator keySetImdb = imdb.keySet( ).iterator( );
+        // here we check for each word of the dictionary
+        while (keySetImdb.hasNext( )) {
 
-        for (int columncounterImdb = 1; columncounterImdb <= maxColumnSource; columncounterImdb++) {
+        for (int columncounterImdb = 0; columncounterImdb <= maxColumnSource; columncounterImdb++) {
 
-            if (!assignColImdb.contains(columncounterImdb)) {
+
                 float resultME = 0f;
                 float resultL = 0f;
                 int count = 0;
@@ -83,23 +91,24 @@ public class InstanceBasedMatching {
                 int colCounterME = 0;
                 int colCounterL = 0;
 
-                Iterator keySetImdb = imdb.keySet( ).iterator( );
-                // here we check for each word of the dictionary
-                while (keySetImdb.hasNext( )) {
+
                     //current MapEntry
                     String pairImdb = keySetImdb.next( ).toString( );
 
-                    if (imdb.get(pairImdb).toString( ).contains(columncounterImdb + "")) {
+                    if (imdb.get(pairImdb).toString( ).contains(columncounterImdb + "") && !assignColImdb.contains(columncounterImdb)) {
                         //System.out.println("GOT IT"+imdb.get(pairImdb).toString()+ ","+(columncounterImdb+""));
 
                         for (int columncounterRt = 1; columncounterRt <= maxColumnTarget; columncounterRt++) {
                             if (!assignColRT.contains(columncounterRt)) {
+
                                 Iterator keySetRt = rottenTomatoes.keySet( ).iterator( );
                                 while (keySetRt.hasNext( )) {
 
                                     String pairRt = keySetRt.next( ).toString( );
 
                                     if (rottenTomatoes.get(pairRt).toString( ).contains(columncounterRt + "")) {
+                                     //   System.out.println("imb " + pairImdb);
+                                     //   System.out.println("pairRT " + pairRt);
 
                                         MongeElkan mE = new MongeElkan( );
                                         Levenshtein metricL = new Levenshtein( );
@@ -123,35 +132,37 @@ public class InstanceBasedMatching {
 
                             }
                             long currentTime2 = System.currentTimeMillis();
-                            System.out.println("----FINISHED col " + columncounterRt + " for" +columncounterImdb +"in " + (currentTime2-timeStart));
+                            System.out.println("----FINISHED colRT" + columncounterRt + " for colImdb " +columncounterImdb +" in " + (currentTime2-timeStart));
+                        }
+
+                        HashMap<Integer, Integer> result = new HashMap<Integer, Integer>( );
+                        System.out.println("------------" + columncounterImdb + "--------------");
+                        System.out.println("simME " + simFinalME + ", " + colCounterME);
+                        System.out.println("simL " + simFinalL + ", " + colCounterL);
+                        long currentTime = System.currentTimeMillis();
+                        if (simFinalME > 0.25 && simFinalL > 0.15) {
+                            if(simFinalME > simFinalL) {
+                                result.put(colCounterME, 0);
+                                assignColRT.add(colCounterME);
+                                finalMatch.put(columncounterImdb, result);
+                            }
+                            else{
+                                result.put(colCounterL, 0);
+                                assignColRT.add(colCounterL);
+                                finalMatch.put(columncounterImdb, result);
+                            }
+
                         }
 
                     }// for coloumnRT
 
-                }
 
-                HashMap<Integer, Integer> result = new HashMap<Integer, Integer>( );
-                System.out.println("------------" + columncounterImdb + "--------------");
-                System.out.println("simME " + simFinalME + ", " + colCounterME);
-                System.out.println("simL " + simFinalL + ", " + colCounterL);
-                long currentTime = System.currentTimeMillis();
-                if (simFinalME > 0.5 && simFinalL > 0.25) {
-                    if(simFinalME > simFinalL) {
-                        result.put(colCounterME, 0);
-                        assignColRT.add(colCounterME);
-                        finalMatch.put(columncounterImdb, result);
-                    }
-                    else{
-                        result.put(colCounterL, 0);
-                        assignColRT.add(colCounterL);
-                        finalMatch.put(columncounterImdb, result);
-                    }
 
-                }
 
-            }
-            long currentTime = System.currentTimeMillis();
-            System.out.println("----FINISHED col " + columncounterImdb + "in " + (currentTime-timeStart));
+
+            long currentTime1 = System.currentTimeMillis();
+            System.out.println("----FINISHED col " + columncounterImdb + "in " + (currentTime1-timeStart));
+        }// if columm is not already assigned
         }
         long timeEnd = System.currentTimeMillis();
         System.out.println(finalMatch);
@@ -163,6 +174,10 @@ public class InstanceBasedMatching {
 
         wanted result with test2 datasets: (1 id) 2->2 (name), 3->3 (year), 4->4 (releaseDate),5->5 (Director),6->6(Creator)
         7->8(cast), 8->11(duration), 9->12(ratingvalue), 13->17 (description)
+        !!! Achtung: Hier entfällt immer col 0 in 4 for schleifen, weil da noch eine Zeilennummer ist
+
+        wanted result with test2 datasets: (0 id) 1->1 (name), 2->2 (year), 3->3 (releaseDate),4->4 (Director),5->5(Creator)
+        6->7(cast), 7->10(duration), 8->11(ratingvalue), 12->16 (description)
         !!! Achtung: Hier entfällt immer col 0 in 4 for schleifen, weil da noch eine Zeilennummer ist
          */
 
@@ -183,11 +198,70 @@ public class InstanceBasedMatching {
                 else maxColumnTarget = split.length;
 
                 if(!header) {
-                    for (int counter = 1; counter < split.length; counter++) {
+                    for (int counter = 0; counter < split.length; counter++) {
                         String attribute = split[counter].trim().toLowerCase().replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-","");
 
 
                         if(!attribute.equals("") && !attribute.equals(" ")) {
+                            if(attribute.contains(",")){
+                                String[] split2 = attribute.split(",");
+                                for (int counter2 = 0; counter2 < split2.length; counter2++) {
+                                    String att = split2[counter2].trim( ).toLowerCase( ).replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-", "");
+                                    if(!att.equals("") && !att.equals(" ")) {
+                                        HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(att, new HashSet<>( ));
+                                        aMatch.add(counter);
+                                        dataBase.put(att, aMatch);
+                                    }
+                                }
+                            }
+                            else{
+                                HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(attribute, new HashSet<>());
+                                aMatch.add(counter);
+                                dataBase.put(attribute, aMatch);
+                            }}
+                    }
+                }
+                else{
+                    header = false;
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return dataBase;
+
+    }
+
+    private static HashMap readDataBig(String filepath, boolean source){
+        HashMap dataBase = new HashMap();
+        boolean header = true;
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+
+                String[] split = sCurrentLine.split(";");
+
+                if(!header) {
+                    for (int counter = 0; counter < split.length; counter++) {
+
+                        String attribute = split[counter].trim().toLowerCase().replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-","");
+
+                        if(!attribute.equals("") && !attribute.equals(" ")) {
+                            /*if(attribute.contains(",")){
+                                String[] split2 = attribute.split(",");
+                                for (int counter2 = 0; counter2 < split2.length; counter2++) {
+                                    String att = split2[counter2].trim( ).toLowerCase( ).replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-", "");
+                                    if(!att.equals("") && !att.equals(" ")) {
+                                        HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(att, new HashSet<>( ));
+                                        aMatch.add(counter);
+                                        dataBase.put(att, aMatch);
+                                    }
+                                }
+                            }
+                            else{*/
                             HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(attribute, new HashSet<>());
                             aMatch.add(counter);
                             dataBase.put(attribute, aMatch);
@@ -210,7 +284,11 @@ public class InstanceBasedMatching {
 
     private static void createSchema(String[] split) {
         boolean source = schemaSource.isEmpty();
-        for(int i = 1; i < split.length; i++){
+        if(source) maxColumnSource = split.length;
+        else maxColumnTarget = split.length;
+        System.out.println(maxColumnSource);
+        System.out.println(maxColumnTarget);
+        for(int i = 0; i < split.length; i++){
             // first cleaning:
             // lower case and remove empty fields
             String attribute = split[i].trim().toLowerCase().replace('"', ' ').replace(" ", "");
