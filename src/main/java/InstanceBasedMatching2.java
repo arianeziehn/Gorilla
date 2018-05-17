@@ -6,6 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+/*
+*
+*
+*
+*
+ */
+
 public class InstanceBasedMatching2 {
 
     private static List<String> schemaSource = new ArrayList<String>();
@@ -20,15 +27,17 @@ public class InstanceBasedMatching2 {
     public static void main(String[] args) {
 
         long timeStart = System.currentTimeMillis();
-        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdbtest2.csv";
-        String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoestest2.csv";
+        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\randomImdbres.csv";
+        String targetPath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\randomRTres.csv";
         String sourcePath1 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\imdbtest3.csv";
         String targetPath1 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\rotten_tomatoestest3.csv";
-        imdb1 = readData(sourcePath1,true);
+        imdb1 = readDataBig(sourcePath1,true);
         rottenTomatoes1 = readData(targetPath1, false);
         imdb = readData(sourcePath,true);
-        rottenTomatoes = readData(targetPath, false);
+        rottenTomatoes = readDataBig(targetPath, false);
 
+        // System.out.println(imdb.size()); 21458 entries
+        // System.out.println(rottenTomatoes.size()); 8067 entries
 
         HashMap match = new HashMap<Integer, HashMap<Integer,Integer>>( );
         HashMap finalMatch = new HashMap<Integer, HashMap<Integer,Integer>>( );
@@ -76,7 +85,7 @@ public class InstanceBasedMatching2 {
         System.out.println(" Already assign colRT: " + assignColRT);
 
 
-        for (int columncounterImdb = 1; columncounterImdb <= maxColumnSource; columncounterImdb++) {
+        for (int columncounterImdb = 0; columncounterImdb <= maxColumnSource; columncounterImdb++) {
 
             if (!assignColImdb.contains(columncounterImdb)) {
                 float resultME = 0f;
@@ -96,7 +105,7 @@ public class InstanceBasedMatching2 {
                     if (imdb.get(pairImdb).toString( ).contains(columncounterImdb + "")) {
                         //System.out.println("GOT IT"+imdb.get(pairImdb).toString()+ ","+(columncounterImdb+""));
 
-                        for (int columncounterRt = 1; columncounterRt <= maxColumnTarget; columncounterRt++) {
+                        for (int columncounterRt = 0; columncounterRt <= maxColumnTarget; columncounterRt++) {
                             if (!assignColRT.contains(columncounterRt)) {
                                 Iterator keySetRt = rottenTomatoes.keySet( ).iterator( );
                                 while (keySetRt.hasNext( )) {
@@ -127,7 +136,7 @@ public class InstanceBasedMatching2 {
 
                             }
                             long currentTime2 = System.currentTimeMillis();
-                            System.out.println("----FINISHED col " + columncounterRt + " for" +columncounterImdb +"in " + (currentTime2-timeStart));
+                            System.out.println("----FINISHED col " + columncounterRt + " for " +columncounterImdb +" in " + (currentTime2-timeStart));
                         }
 
                     }// for coloumnRT
@@ -155,6 +164,8 @@ public class InstanceBasedMatching2 {
 
                 }
 
+                System.out.println("The final match : " + finalMatch);
+
             }
             long currentTime = System.currentTimeMillis();
             System.out.println("----FINISHED col " + columncounterImdb + "in " + (currentTime-timeStart));
@@ -171,7 +182,6 @@ public class InstanceBasedMatching2 {
          */
 
     }
-
 
 
     private static HashMap readData(String filepath, boolean source){
@@ -192,6 +202,65 @@ public class InstanceBasedMatching2 {
 
 
                         if(!attribute.equals("") && !attribute.equals(" ")) {
+                            if(attribute.contains(",")){
+                                String[] split2 = attribute.split(",");
+                                for (int counter2 = 0; counter2 < split2.length; counter2++) {
+                                    String att = split2[counter2].trim( ).toLowerCase( ).replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-", "");
+                                    if(!att.equals("") && !att.equals(" ")) {
+                                        HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(att, new HashSet<>( ));
+                                        aMatch.add(counter);
+                                        dataBase.put(att, aMatch);
+                                    }
+                                }
+                            }
+                            else{
+                                HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(attribute, new HashSet<>());
+                                aMatch.add(counter);
+                                dataBase.put(attribute, aMatch);
+                            }}
+                    }
+                }
+                else{
+                    header = false;
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return dataBase;
+
+    }
+
+    private static HashMap readDataBig(String filepath, boolean source){
+        HashMap dataBase = new HashMap();
+        boolean header = true;
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+
+                String[] split = sCurrentLine.split(";");
+
+                if(!header) {
+                    for (int counter = 0; counter < split.length; counter++) {
+
+                        String attribute = split[counter].trim().toLowerCase().replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-","");
+
+                        if(!attribute.equals("") && !attribute.equals(" ")) {
+                            /*if(attribute.contains(",")){
+                                String[] split2 = attribute.split(",");
+                                for (int counter2 = 0; counter2 < split2.length; counter2++) {
+                                    String att = split2[counter2].trim( ).toLowerCase( ).replace('"', ' ').replaceAll(" ", "").replaceAll("_", "").replaceAll("-", "");
+                                    if(!att.equals("") && !att.equals(" ")) {
+                                        HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(att, new HashSet<>( ));
+                                        aMatch.add(counter);
+                                        dataBase.put(att, aMatch);
+                                    }
+                                }
+                            }
+                            else{*/
                             HashSet<Integer> aMatch = (HashSet<Integer>) dataBase.getOrDefault(attribute, new HashSet<>());
                             aMatch.add(counter);
                             dataBase.put(attribute, aMatch);
@@ -214,6 +283,10 @@ public class InstanceBasedMatching2 {
 
     private static void createSchema(String[] split) {
         boolean source = schemaSource.isEmpty();
+        if(source) maxColumnSource = split.length;
+        else maxColumnTarget = split.length;
+        System.out.println(maxColumnSource);
+        System.out.println(maxColumnTarget);
         for(int i = 0; i < split.length; i++){
             // first cleaning:
             // lower case and remove empty fields

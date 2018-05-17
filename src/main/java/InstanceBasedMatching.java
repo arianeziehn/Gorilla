@@ -98,7 +98,7 @@ public class InstanceBasedMatching {
                     if (imdb.get(pairImdb).toString( ).contains(columncounterImdb + "") && !assignColImdb.contains(columncounterImdb)) {
                         //System.out.println("GOT IT"+imdb.get(pairImdb).toString()+ ","+(columncounterImdb+""));
 
-                        for (int columncounterRt = 1; columncounterRt <= maxColumnTarget; columncounterRt++) {
+                        for (int columncounterRt = 0; columncounterRt <= maxColumnTarget; columncounterRt++) {
                             if (!assignColRT.contains(columncounterRt)) {
 
                                 Iterator keySetRt = rottenTomatoes.keySet( ).iterator( );
@@ -144,13 +144,17 @@ public class InstanceBasedMatching {
                             if(simFinalME > simFinalL) {
                                 result.put(colCounterME, 0);
                                 assignColRT.add(colCounterME);
+                                assignColImdb.add(columncounterImdb);
                                 finalMatch.put(columncounterImdb, result);
                             }
                             else{
                                 result.put(colCounterL, 0);
                                 assignColRT.add(colCounterL);
+                                assignColImdb.add(columncounterImdb);
                                 finalMatch.put(columncounterImdb, result);
                             }
+
+                            System.out.println("The final match : " + finalMatch);
 
                         }
 
@@ -161,7 +165,7 @@ public class InstanceBasedMatching {
 
 
             long currentTime1 = System.currentTimeMillis();
-            System.out.println("----FINISHED col " + columncounterImdb + "in " + (currentTime1-timeStart));
+            System.out.println("----FINISHED col " + columncounterImdb + " in " + (currentTime1-timeStart));
         }// if columm is not already assigned
         }
         long timeEnd = System.currentTimeMillis();
@@ -172,13 +176,8 @@ public class InstanceBasedMatching {
         current output for small sets from Henrik && it takes very long for colimdb 6, the rest is relativly fast
         besseres umgehen mit den sim werten
 
-        wanted result with test2 datasets: (1 id) 2->2 (name), 3->3 (year), 4->4 (releaseDate),5->5 (Director),6->6(Creator)
-        7->8(cast), 8->11(duration), 9->12(ratingvalue), 13->17 (description)
-        !!! Achtung: Hier entfällt immer col 0 in 4 for schleifen, weil da noch eine Zeilennummer ist
-
-        wanted result with test2 datasets: (0 id) 1->1 (name), 2->2 (year), 3->3 (releaseDate),4->4 (Director),5->5(Creator)
+        wanted result with test3 datasets: (0 id) 1->1 (name), 2->2 (year), 3->3 (releaseDate),4->4 (Director),5->5(Creator)
         6->7(cast), 7->10(duration), 8->11(ratingvalue), 12->16 (description)
-        !!! Achtung: Hier entfällt immer col 0 in 4 for schleifen, weil da noch eine Zeilennummer ist
          */
 
     }
@@ -286,8 +285,8 @@ public class InstanceBasedMatching {
         boolean source = schemaSource.isEmpty();
         if(source) maxColumnSource = split.length;
         else maxColumnTarget = split.length;
-        System.out.println(maxColumnSource);
-        System.out.println(maxColumnTarget);
+        //System.out.println(maxColumnSource);
+        //System.out.println(maxColumnTarget);
         for(int i = 0; i < split.length; i++){
             // first cleaning:
             // lower case and remove empty fields
