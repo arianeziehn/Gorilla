@@ -1,28 +1,70 @@
 package Assign2;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class ErrorDetection {
 
     private static List<ArrayList<String>> input = new ArrayList<ArrayList<String>>();
+    private static String csvOutput = "./src/main/output/csvOutput.csv";
+    private static String csvOutput2 = "./src/main/output/csvOutput2.csv";
+    private static USMap mapper = new USMap();
+
     static int numberOfCol = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
-        String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\inputDB.csv";
+        String sourcePath = "./src/main/resources/inputDB.csv";
+        FileWriter fileWriter = new FileWriter(csvOutput);
         readData(sourcePath,true);
 
-        for(ArrayList<String> row : input){
 
-            if(!(row.get(6).length()==5)) row.set(6,"E");
+        fileWriter.write("");
+
+
+
+
+        for (ArrayList<String> anInput : input) {
+            Iterator iterator = anInput.iterator();
+            while (iterator.hasNext()) {
+                fileWriter.append(iterator.next().toString());
+                if(iterator.hasNext()) {
+                    fileWriter.append(",");
+                }
+            }
+            fileWriter.append("\n");
         }
+
+        fileWriter.flush();
+        fileWriter.close();
+
+
+        /**
+        BufferedReader br=new BufferedReader(new FileReader(csvOutput));
+        String line="";
+        String newLine = "";
+
+
+
+        FileWriter replacer = new FileWriter(csvOutput2);
+
+        while((line=br.readLine())!=null) {
+            newLine = line.replaceAll("\\[", "");
+            newLine = newLine.replaceAll("\\]", "");
+
+
+            replacer.write(newLine);
+            replacer.append("\n");
+
+        }
+
+        replacer.flush();
+        replacer.close();
+*/
     }
 
     private static void readData(String filepath, boolean source){
@@ -34,31 +76,35 @@ public class ErrorDetection {
             int rowCount = 1;
 
             while ((sCurrentLine = br.readLine()) != null) {
-                ArrayList<String> row = new ArrayList(12);
-                String[] split = sCurrentLine.replace(", ", ";").replace(" ","").split(",");
+
+                String[] split = sCurrentLine.replace(", ", ";").split(",");
 
                 if(!header) {
+                    ArrayList<String> row = new ArrayList<>(numberOfCol);
                     for (int counter = 0; counter < numberOfCol; counter++) {
                         String attribute = "";
-                        if(counter < split.length) attribute = split[counter].trim().replace('"', ' ').replaceAll(" ", "");
+                        if(counter < split.length) attribute = split[counter].replace('"', ' ').trim();
                         else row.add(counter, "E");
-                        if(!attribute.equals("") && !attribute.equals(" ") && !attribute.matches("[a-z]+")) {
+                        if(!attribute.equals("") && !attribute.equals(" ") && !attribute.matches(".*[a-z]+.*")) {
 
                                 row.add(counter, attribute);
                             }
                             else{
                             // E is added for Error
-                            row.add(counter, "E");
+                            if((attribute.equals("") || !attribute.equals(" ")) && (counter == 2 || counter == 8 || counter == 9 ||counter == 11) || counter ==12) row.add(counter, "");
+                            else row.add(counter, "E");
                         }
                     }
                     //state
-                    if(!(row.get(6).length()==2) && !row.get(6).matches("[A-Z]*")){
+                    if(!mapper.containsValue(row.get(6))){
                         row.set(6,"E");
                     }
+
                     // ZIP
-                    if(!(row.get(7).length()==5)) row.set(7,"E");
+                    if(!(row.get(7).length()==5) && !row.get(7).matches("[0-9]*")) row.set(7,"E");
+
                     //ssn
-                    if(!(row.get(10).length()>=8 && row.get(10).length()<11 )) row.set(10,"E");
+                    if(!(row.get(10).length()>=8 && row.get(10).length()<11 ) && !row.get(10).matches("[0-9]*")) row.set(10,"E");
 
                     input.add(rowCount, row);
 
