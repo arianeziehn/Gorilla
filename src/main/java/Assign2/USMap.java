@@ -34,35 +34,35 @@ public class USMap {
         mapper.put("Louisiana".toUpperCase(), "LA");
         mapper.put("Maine".toUpperCase(),"ME");
         mapper.put("Maryland","MD");
-/*Massachusetts – MA
-Michigan – MI
-Minnesota – MN
-Mississippi – MS
-Missouri – MOMontana – MT
-Nebraska – NE
-Nevada – NV
-New Hampshire – NH
-New Jersey – NJ
-New Mexico – NM
-New York – NY
-North Carolina – NC
-North Dakota – ND
-Ohio – OH
-Oklahoma – OK
-Oregon – OR
-Pennsylvania – PA
-Rhode Island – RI
-South Carolina – SC
-South Dakota – SD
-Tennessee – TN
+            /*Massachusetts – MA
+            Michigan – MI
+            Minnesota – MN
+            Mississippi – MS
+            Missouri – MOMontana – MT
+            Nebraska – NE
+            Nevada – NV
+            New Hampshire – NH
+            New Jersey – NJ
+            New Mexico – NM
+            New York – NY
+            North Carolina – NC
+            North Dakota – ND
+            Ohio – OH
+            Oklahoma – OK
+            Oregon – OR
+            Pennsylvania – PA
+            Rhode Island – RI
+            South Carolina – SC
+            South Dakota – SD
+            Tennessee – TN
 
-Utah – UT
-Vermont – VT
-Virginia – VA
-Washington – WA
-West Virginia – WV
-Wisconsin – WI
-Wyoming – WY*/
+            Utah – UT
+            Vermont – VT
+            Virginia – VA
+            Washington – WA
+            West Virginia – WV
+            Wisconsin – WI
+            Wyoming – WY*/
 
     }
 
