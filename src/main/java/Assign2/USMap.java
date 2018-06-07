@@ -33,36 +33,36 @@ public class USMap {
         mapper.put("Kentucky".toUpperCase(),"KY");
         mapper.put("Louisiana".toUpperCase(), "LA");
         mapper.put("Maine".toUpperCase(),"ME");
-        mapper.put("Maryland","MD");
-            /*Massachusetts – MA
-            Michigan – MI
-            Minnesota – MN
-            Mississippi – MS
-            Missouri – MOMontana – MT
-            Nebraska – NE
-            Nevada – NV
-            New Hampshire – NH
-            New Jersey – NJ
-            New Mexico – NM
-            New York – NY
-            North Carolina – NC
-            North Dakota – ND
-            Ohio – OH
-            Oklahoma – OK
-            Oregon – OR
-            Pennsylvania – PA
-            Rhode Island – RI
-            South Carolina – SC
-            South Dakota – SD
-            Tennessee – TN
-
-            Utah – UT
-            Vermont – VT
-            Virginia – VA
-            Washington – WA
-            West Virginia – WV
-            Wisconsin – WI
-            Wyoming – WY*/
+        mapper.put("Maryland".toUpperCase(),"MD");
+        mapper.put("Massachusetts".toUpperCase(),"MA");
+        mapper.put("Michigan".toUpperCase(),"MI");
+        mapper.put("Minnesota".toUpperCase(),"MN");
+        mapper.put("Mississippi".toUpperCase(),"MS");
+        mapper.put("Missouri".toUpperCase(),"MO");
+        mapper.put("Montana".toUpperCase(),"MT");
+        mapper.put("Nebraska".toUpperCase(),"NE");
+        mapper.put("Nevada".toUpperCase(),"NV");
+        mapper.put("New Hampshire".toUpperCase(),"NH");
+        mapper.put("New Jersey".toUpperCase(),"NJ");
+        mapper.put("New Mexico".toUpperCase(),"NM");
+        mapper.put("New York".toUpperCase(),"NY");
+        mapper.put("North Carolina".toUpperCase(),"NC");
+        mapper.put("North Dakota".toUpperCase(),"ND");
+        mapper.put("Ohio".toUpperCase(),"OH");
+        mapper.put("Oklahoma".toUpperCase(),"OK");
+        mapper.put("Oregon".toUpperCase(),"OR");
+        mapper.put("Pennsylvania".toUpperCase(),"PA");
+        mapper.put("Rhode Island".toUpperCase(),"RI");
+        mapper.put("South Carolina".toUpperCase(),"SC");
+        mapper.put("South Dakota".toUpperCase(),"SD");
+        mapper.put("Tennessee".toUpperCase(),"TN");
+        mapper.put("Utah".toUpperCase(),"UT");
+        mapper.put("Vermont".toUpperCase(),"VT");
+        mapper.put("Virginia".toUpperCase(),"VA");
+        mapper.put("Washington".toUpperCase(),"WA");
+        mapper.put("West Virginia".toUpperCase(),"WV");
+        mapper.put("Wisconsin".toUpperCase(),"WI");
+        mapper.put("Wyoming".toUpperCase(),"WY");
 
     }
 
