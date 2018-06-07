@@ -18,13 +18,8 @@ public class ErrorCorrection {
 
 
         String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\resources\\inputDB.csv";
-
         readData(sourcePath,true);
 
-        for(ArrayList<String> row : input){
-
-            if(!(row.get(6).length()==5)) row.set(6,"E");
-        }
     }
 
     private static void readData(String filepath, boolean source){
@@ -36,26 +31,27 @@ public class ErrorCorrection {
             int rowCount = 1;
 
             while ((sCurrentLine = br.readLine()) != null) {
-                ArrayList<String> row = new ArrayList(12);
-                String[] split = sCurrentLine.replace(", ", ";").replace(" ","").split(",");
+
+                String[] split = sCurrentLine.replace(", ", ";").split(",");
 
                 if(!header) {
+                    ArrayList<String> row = new ArrayList(numberOfCol);
                     for (int counter = 0; counter < numberOfCol; counter++) {
                         String attribute = "";
                         if(counter < split.length){
-                            attribute = split[counter].trim().replace('"', ' ').toUpperCase();
-                            System.out.println(input.get(0).get(counter)+ "counter : "+ counter +": " + " " + attribute);
+                            // to UpperCase for constrain 1
+                            attribute = split[counter].replace('"', ' ').trim().toUpperCase();
+                            //System.out.println(input.get(0).get(counter)+ "counter : "+ counter +": " + " " + attribute);
                         }
                         else row.add(counter, "E");
 
                         if(!attribute.equals("") && !attribute.equals(" ") && !attribute.matches("[a-z]+")) {
-
                                 row.add(counter, attribute);
                             }
                             else{
                             // E is added for Error
-                            if((attribute.equals("") || !attribute.equals(" ")) && (counter == 2 || counter == 8 || counter == 9 ||counter == 11)) row.add(counter, "");
-                            row.add(counter, "E");
+                            if((attribute.equals("") || !attribute.equals(" ")) && (counter == 2 || counter == 8 || counter == 9 ||counter == 11 || counter == 12)) row.add(counter, "");
+                            else row.add(counter, "E");
                         }
                     }
 
