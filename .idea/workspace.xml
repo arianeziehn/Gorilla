@@ -5,6 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java" afterPath="$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java" afterPath="$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Assign2/USMap.java" afterPath="$PROJECT_DIR$/src/main/java/Assign2/USMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/output/csvOutput.csv" afterPath="$PROJECT_DIR$/src/main/output/csvOutput.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/output/csvOutput2.csv" afterPath="$PROJECT_DIR$/src/main/output/csvOutput2.csv" />
     </list>
     <list id="5313970d-5c7a-4be9-a4f7-fe0637d4a583" name="New changelist" comment="" />
@@ -48,8 +50,8 @@
       <file leaf-file-name="ErrorDetection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="138" column="30" selection-start-line="138" selection-start-column="29" selection-end-line="138" selection-end-column="30" />
+            <state relative-caret-position="1290">
+              <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -58,8 +60,8 @@
       <file leaf-file-name="csvOutput2.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput2.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-480">
-              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            <state relative-caret-position="1410435">
+              <caret line="94041" column="19" selection-start-line="94041" selection-start-column="19" selection-end-line="94041" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -68,8 +70,8 @@
       <file leaf-file-name="ErrorCorrection.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="90" column="50" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
+            <state relative-caret-position="127">
+              <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,19 +82,18 @@
       <file leaf-file-name="USMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/USMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+            <state relative-caret-position="500">
+              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#149#165#0" expanded="true" />
                 <element signature="e#188#189#0" expanded="true" />
                 <element signature="e#220#221#0" expanded="true" />
-                <element signature="e#2894#2895#0" expanded="true" />
-                <element signature="e#2944#2945#0" expanded="true" />
-                <element signature="e#2989#2990#0" expanded="true" />
-                <element signature="e#3035#3036#0" expanded="true" />
-                <element signature="e#3071#3072#0" expanded="true" />
-                <element signature="e#3109#3110#0" expanded="true" />
+                <element signature="e#2942#2943#0" expanded="true" />
+                <element signature="e#2992#2993#0" expanded="true" />
+                <element signature="e#3083#3084#0" expanded="true" />
+                <element signature="e#3119#3120#0" expanded="true" />
+                <element signature="e#3157#3158#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,8 +102,8 @@
       <file leaf-file-name="csvOutput.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-165">
-              <caret line="7" column="30" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="30" />
+            <state relative-caret-position="-144">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,8 +122,8 @@
       <file leaf-file-name="inputDB.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/inputDB.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="64" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+            <state relative-caret-position="45">
+              <caret line="15" column="49" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -185,10 +186,10 @@
         <option value="$PROJECT_DIR$/src/main/java/InstanceBasedMatching2.java" />
         <option value="$PROJECT_DIR$/src/main/java/LabelBasedMatching.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/Assign2/USMap.java" />
         <option value="$PROJECT_DIR$/src/main/output/csvOutput.csv" />
-        <option value="$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java" />
         <option value="$PROJECT_DIR$/src/main/output/csvOutput2.csv" />
+        <option value="$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Assign2/USMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java" />
       </list>
     </option>
@@ -854,17 +855,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327787" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32279533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32279533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32937685" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924694" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15875371" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28041542" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39600664" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39600664" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -891,26 +892,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java</url>
-          <line>45</line>
-          <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java</url>
-          <line>40</line>
-          <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java</url>
-          <line>114</line>
+          <line>142</line>
           <properties />
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java</url>
-          <line>104</line>
+          <line>132</line>
           <properties />
           <option name="timeStamp" value="67" />
         </line-breakpoint>
@@ -922,21 +911,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java</url>
-          <line>88</line>
+          <line>115</line>
           <properties />
           <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="72" />
+      <option name="time" value="87" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="sCurrentLine" />
-        <watch expression="dob" />
-        <watch expression=" Integer.valueOf(dob.substring(3,5))" />
-        <watch expression="mapper.containsValue(state)" />
-        <watch expression="(zip.length()==5" />
-        <watch expression="zip" />
+        <watch expression="row.get(11)" />
+        <watch expression="(row.get(7))" language="JAVA" custom="" />
+        <watch expression="(row.get(7)).split(&quot; &quot;)[0]" language="JAVA" custom="" />
+        <watch expression="row.get(6)" />
+        <watch expression="row.get(9).split(&quot; &quot;)[1]" />
+        <watch expression="row.get(9).split(&quot; &quot;)[0]" />
+        <watch expression="mapper.containsKey((row.get(7)).split(&quot; &quot;)[1])" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -1177,61 +1167,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="138" column="30" selection-start-line="138" selection-start-column="29" selection-end-line="138" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-165">
-          <caret line="7" column="30" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="30" />
+        <state relative-caret-position="-144">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput2.csv">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/ErrorDetection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        <state relative-caret-position="1290">
+          <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/inputDB.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="15" column="49" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/USMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+        <state relative-caret-position="500">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#149#165#0" expanded="true" />
             <element signature="e#188#189#0" expanded="true" />
             <element signature="e#220#221#0" expanded="true" />
-            <element signature="e#2894#2895#0" expanded="true" />
-            <element signature="e#2944#2945#0" expanded="true" />
-            <element signature="e#2989#2990#0" expanded="true" />
-            <element signature="e#3035#3036#0" expanded="true" />
-            <element signature="e#3071#3072#0" expanded="true" />
-            <element signature="e#3109#3110#0" expanded="true" />
+            <element signature="e#2942#2943#0" expanded="true" />
+            <element signature="e#2992#2993#0" expanded="true" />
+            <element signature="e#3083#3084#0" expanded="true" />
+            <element signature="e#3119#3120#0" expanded="true" />
+            <element signature="e#3157#3158#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/inputDB.csv">
+    <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput2.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="64" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+        <state relative-caret-position="1410435">
+          <caret line="94041" column="19" selection-start-line="94041" selection-start-column="19" selection-end-line="94041" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="90" column="50" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
+        <state relative-caret-position="127">
+          <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

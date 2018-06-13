@@ -50,7 +50,7 @@ public class ErrorCorrection {
 
             while ((sCurrentLine = br.readLine()) != null) {
 
-                String[] split = sCurrentLine.replace(", ", ";").split(",");
+                String[] split = sCurrentLine.replace(", ", " ").split(",");
 
                 if(!header) {
                     ArrayList<String> row = new ArrayList<>(numberOfCol);
@@ -74,6 +74,29 @@ public class ErrorCorrection {
                         }
                     }
 
+                    // check zip code column for state characters and copy them in the right column
+                    if (row.get(7).contains(" ")) {
+                        if (mapper.containsKey((row.get(7)).split(" ")[1])) {
+                            row.set(6, row.get(7).split(" ")[1]);
+                        } else if (mapper.containsValue((row.get(7)).split(" ")[1])) {
+                            row.set(6, row.get(7).split(" ")[1]);
+                        } else if (mapper.containsKey((row.get(7)).split(" ")[0])) {
+                            row.set(6, row.get(7).split(" ")[0]);
+                        } else if (mapper.containsValue((row.get(7)).split(" ")[0])) {
+                            row.set(6, row.get(7).split(" ")[0]);
+                        }
+                    }
+                    if (row.get(9).contains(" ")) {
+                        if (mapper.containsKey((row.get(9)).split(" ")[0])) {
+                            row.set(6, row.get(9).split(" ")[0]);
+                        } else if (mapper.containsKey((row.get(9)).split(" ")[1])) {
+                            row.set(6, row.get(9).split(" ")[1]);
+                        } else if (row.get(9).split(" ").length == 3) {
+                            if (mapper.containsKey((row.get(9)).split(" ")[2]))
+                                row.set(6, row.get(9).split(" ")[2]);
+                        }
+                    }
+
                     // ZIP
                     if(!(row.get(7).length()==5) && !row.get(7).matches("[0-9]*")){
 
@@ -82,11 +105,16 @@ public class ErrorCorrection {
                         zip = zip.replaceAll(" ", "");
                         String state = row.get(7).replaceAll("[0-9]*", "");
                         state = state.replaceAll(" ", "");
+
+
+
                         if((zip.length()==5) && zip.matches("[0-9]*")) {
                             //System.out.println(input.get(0).get(7) + "2 " + zip);
                             row.set(7, zip);
                         }
+
                         else row.set(7,"E");
+
                         if(mapper.containsValue(state)) row.set(6,state);
                         if(mapper.containsKey(state)) row.set(6,mapper.get(state));
 

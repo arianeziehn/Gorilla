@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ErrorDetection {
 
-    private static List<ArrayList<String>> input = new ArrayList<ArrayList<String>>();
+    private static List<ArrayList<String>> input = new ArrayList<>();
     private static USMap mapper = new USMap();
 
     private static int numberOfCol = 0;
@@ -83,7 +83,7 @@ public class ErrorDetection {
                     for (int counter = 0; counter < numberOfCol; counter++) {
                         String attribute = "";
                         if(counter < split.length) attribute = split[counter].replace('"', ' ').trim();
-                        else row.add(counter, "E");
+                        //else row.add(counter, "E");
                         if(!attribute.equals("") && !attribute.equals(" ") && !attribute.matches(".*[a-z]+.*")) {
 
                                 row.add(counter, attribute);
@@ -92,6 +92,7 @@ public class ErrorDetection {
                             // E is added for Error
                             if((attribute.equals("") || !attribute.equals(" ")) && (counter == 2 || counter == 8 || counter == 9 ||counter == 11) || counter ==12) row.add(counter, "");
                             else row.add(counter, "E");
+                            //else row.add(counter, attribute);
                         }
                     }
                     //state
