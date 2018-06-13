@@ -9,18 +9,17 @@ import java.util.List;
 public class ErrorDetection {
 
     private static List<ArrayList<String>> input = new ArrayList<ArrayList<String>>();
-    private static String csvOutput = "./src/main/output/csvOutput.csv";
-    private static String csvOutput2 = "./src/main/output/csvOutput2.csv";
     private static USMap mapper = new USMap();
 
-    static int numberOfCol = 0;
+    private static int numberOfCol = 0;
 
     public static void main(String[] args) throws IOException {
 
 
         String sourcePath = "./src/main/resources/inputDB.csv";
+        String csvOutput = "./src/main/output/csvOutput.csv";
         FileWriter fileWriter = new FileWriter(csvOutput);
-        readData(sourcePath,true);
+        readData(sourcePath);
 
 
         fileWriter.write("");
@@ -67,7 +66,7 @@ public class ErrorDetection {
 */
     }
 
-    private static void readData(String filepath, boolean source){
+    private static void readData(String filepath){
 
         boolean header = true;
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
@@ -127,7 +126,7 @@ public class ErrorDetection {
     private static void createSchema(String[] split) {
 
         numberOfCol = split.length;
-        ArrayList<String> row = new ArrayList();
+        ArrayList<String> row = new ArrayList<>();
 
         for(int i = 0; i < split.length; i++) {
             // first cleaning:
