@@ -63,13 +63,29 @@ public class DuplicateFinder {
         }
         HashMap<String, String> clone = new HashMap<>(tuples);
 
-        int rowCount = 0;
+        tuples.forEach((s, s2) -> clone.forEach((s3, s4) -> {
 
-        tuples.forEach((s, s2) -> {
-            if (s.matches(clone.get(0))){
-                row.add(rowCount, s);
+           String[] array1 = s2.split(",");
+           String[] array2 = s4.split(",");
+
+           if (!(array1[0].matches(array2[0]))) {
+                if (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8) {
+                    if (mongeElkan.getSimilarity(array1[2], array2[2]) > 0.8) {
+                        if (mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
+                            if (mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
+                                row.add(s + ", " + s3);
+                                System.out.println(s + ", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2, s4));
+                            }
+                        }
+                    }
+                }
             }
-        });
+            //if ((mongeElkan.getSimilarity(s2,s4)) > 0.8){
+            //    row.add(s +", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2,s4));
+            //}
+        }));
+
+        input.add(row);
 
     }
 }

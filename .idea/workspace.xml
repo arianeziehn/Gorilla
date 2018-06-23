@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04fad72d-9741-4d65-a4a6-fd3861a857a5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Assign3/DuplicateDetection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Assign3/DuplicateFinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/output/csvOutput3.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/output/csvOutput4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Gorilla.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/simmetrics_jar_v1_6_2_d07_02_071.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/output/csvOutput2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/output/csvOutput2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Assign3/DuplicateFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Assign3/DuplicateFinder.java" afterDir="false" />
     </list>
     <list id="5313970d-5c7a-4be9-a4f7-fe0637d4a583" name="New changelist" comment="" />
     <ignored path="Gorilla.iws" />
@@ -74,8 +62,8 @@
       <file leaf-file-name="DuplicateDetection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Assign3/DuplicateDetection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="152" column="20" lean-forward="true" selection-start-line="152" selection-start-column="20" selection-end-line="154" selection-end-column="31" />
+            <state relative-caret-position="330">
+              <caret line="187" column="9" lean-forward="true" selection-start-line="187" selection-start-column="9" selection-end-line="187" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,11 +74,29 @@
       <file leaf-file-name="DuplicateFinder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Assign3/DuplicateFinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="320">
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SmithWatermanGotohWindowedAffine.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/simmetrics_jar_v1_6_2_d07_02_07.jar!/uk/ac/shef/wit/simmetrics/similaritymetrics/SmithWatermanGotohWindowedAffine.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="122" selection-start-line="122" selection-end-line="122" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -103,34 +109,6 @@
       <file leaf-file-name="csvOutput3.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput3.csv">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="USMap.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/USMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#188#189#0" expanded="true" />
-                <element signature="e#220#221#0" expanded="true" />
-                <element signature="e#2942#2943#0" expanded="true" />
-                <element signature="e#2992#2993#0" expanded="true" />
-                <element signature="e#3083#3084#0" expanded="true" />
-                <element signature="e#3119#3120#0" expanded="true" />
-                <element signature="e#3157#3158#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inputDB.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/inputDB.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="15" column="49" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="49" />
-            </state>
-          </provider>
         </entry>
       </file>
       <file leaf-file-name="InstanceBasedMatching2.java" pinned="false" current-in-tab="false">
@@ -601,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528383473978</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="implement DuplicateDetection">
+      <created>1529776215334</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1529776215334</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -616,7 +601,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.327787" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32072073" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32924694" />
       <window_info id="Capture Tool" order="2" />
       <window_info anchor="right" id="Designer" order="3" />
@@ -645,7 +630,8 @@
     <MESSAGE value="update instance based" />
     <MESSAGE value="final update" />
     <MESSAGE value="write ErrorDetection to CSVFile" />
-    <option name="LAST_COMMIT_MESSAGE" value="write ErrorDetection to CSVFile" />
+    <MESSAGE value="implement DuplicateDetection" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement DuplicateDetection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -674,30 +660,15 @@
           <properties />
           <option name="timeStamp" value="71" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Assign3/DuplicateFinder.java</url>
-          <line>69</line>
-          <properties />
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Assign3/DuplicateFinder.java</url>
-          <line>68</line>
-          <properties />
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="89" />
+      <option name="time" value="99" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="row.get(11)" />
-        <watch expression="(row.get(7))" language="JAVA" custom="" />
-        <watch expression="(row.get(7)).split(&quot; &quot;)[0]" language="JAVA" custom="" />
-        <watch expression="row.get(6)" />
-        <watch expression="row.get(9).split(&quot; &quot;)[1]" />
-        <watch expression="row.get(9).split(&quot; &quot;)[0]" />
-        <watch expression="mapper.containsKey((row.get(7)).split(&quot; &quot;)[1])" language="JAVA" custom="" />
+        <watch expression="mongeElkan.getSimilarity(s2,s4)" />
+        <watch expression="mongeElkan.getSimilarity(array1[1], array2[1])" />
+        <watch expression="mongeElkan.getSimilarity(array1[2], array2[2])" />
+        <watch expression="mongeElkan.getSimilarity(array1[3], array2[3]" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -705,10 +676,21 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>mongeElkan.getSimilarity(array1[3], array2[3]</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>mongeElkan.getSimilarity(array1[3], array2[3]) &gt; 0.8</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/inputDB.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -785,13 +767,6 @@
     <entry file="jar://$PROJECT_DIR$/../simmetrics_jar_v1_6_2_d07_02_07.jar!/uk/ac/shef/wit/simmetrics/TestArbitrators.class" />
     <entry file="jar://$PROJECT_DIR$/../simmetrics_jar_v1_6_2_d07_02_07.jar!/uk/ac/shef/wit/simmetrics/TestEstimatedTimes.class" />
     <entry file="jar://$PROJECT_DIR$/../simmetrics_jar_v1_6_2_d07_02_07.jar!/uk/ac/shef/wit/simmetrics/similaritymetrics/CosineSimilarity.class" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/simmetrics_jar_v1_6_2_d07_02_07.jar!/uk/ac/shef/wit/simmetrics/similaritymetrics/SmithWatermanGotohWindowedAffine.class" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/rt_small_adj.csv" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/rotten_tomatoestest2.csv" />
@@ -869,16 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LabelBasedMatching.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -889,13 +854,37 @@
     <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput3.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/output/csvOutput4.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="jar://$PROJECT_DIR$/simmetrics_jar_v1_6_2_d07_02_07.jar!/uk/ac/shef/wit/simmetrics/similaritymetrics/SmithWatermanGotohWindowedAffine.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Assign2/ErrorCorrection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Assign3/DuplicateDetection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="152" column="20" lean-forward="true" selection-start-line="152" selection-start-column="20" selection-end-line="154" selection-end-column="31" />
+        <state relative-caret-position="330">
+          <caret line="187" column="9" lean-forward="true" selection-start-line="187" selection-start-column="9" selection-end-line="187" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -904,8 +893,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Assign3/DuplicateFinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        <state relative-caret-position="320">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
