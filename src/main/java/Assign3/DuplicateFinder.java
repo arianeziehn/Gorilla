@@ -21,13 +21,9 @@ public class DuplicateFinder {
 
         findDuplicates();
 
-        String csvOutput2 = "./src/main/output/csvOutput4.csv";
-        FileWriter fileWriter = new FileWriter(csvOutput2);
-
-        fileWriter.write("");
-        fileWriter.write("tuple_id_1, tuple_id_2\n");
 
 
+/*
         for (ArrayList<String> anInput : input) {
             Iterator iterator = anInput.iterator();
             while (iterator.hasNext()) {
@@ -42,7 +38,7 @@ public class DuplicateFinder {
         fileWriter.flush();
         fileWriter.close();
 
-
+*/
 
 
 
@@ -63,6 +59,12 @@ public class DuplicateFinder {
         }
         HashMap<String, String> clone = new HashMap<>(tuples);
 
+        String csvOutput2 = "./src/main/output/csvOutput4.csv";
+        FileWriter fileWriter = new FileWriter(csvOutput2);
+
+        fileWriter.write("");
+        fileWriter.write("tuple_id_1, tuple_id_2\n");
+
         tuples.forEach((s, s2) -> clone.forEach((s3, s4) -> {
 
            String[] array1 = s2.split(",");
@@ -73,17 +75,32 @@ public class DuplicateFinder {
                     if (mongeElkan.getSimilarity(array1[2], array2[2]) > 0.8) {
                         if (mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
                             if (mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
-                                row.add(s + ", " + s3);
-                                System.out.println(s + ", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2, s4));
+                                //row.add(s + ", " + s3);
+                                //System.out.println(s + ", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2, s4));
+                                try {
+                                    fileWriter.append(s).append(",").append(s3).append("\n");
+                                    fileWriter.flush();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
                 }
             }
+
+
             //if ((mongeElkan.getSimilarity(s2,s4)) > 0.8){
             //    row.add(s +", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2,s4));
             //}
         }));
+
+        try {
+
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         input.add(row);
 
