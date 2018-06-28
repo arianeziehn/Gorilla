@@ -65,6 +65,7 @@ public class DuplicateFinder {
         fileWriter.write("");
         fileWriter.write("tuple_id_1, tuple_id_2\n");
 
+
         tuples.forEach((s, s2) -> clone.forEach((s3, s4) -> {
 
            String[] array1 = s2.split(",");
@@ -72,7 +73,7 @@ public class DuplicateFinder {
 
            if (!(array1[0].matches(array2[0]))) {
                 if (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8) {
-                    if (mongeElkan.getSimilarity(array1[2], array2[2]) > 0.8) {
+                    if (mongeElkan.getSimilarity(array1[7], array2[7]) > 0.8) {
                         if (mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
                             if (mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
                                 //row.add(s + ", " + s3);

@@ -119,7 +119,7 @@ public class DuplicateDetection {
                             row.set(7, zip);
                         }
 
-                        else row.set(7,"E");
+                        //else row.set(7,"E");
 
                         if(mapper.containsValue(state)) row.set(6,state);
                         if(mapper.containsKey(state)) row.set(6,mapper.get(state));
@@ -136,7 +136,7 @@ public class DuplicateDetection {
                             row.set(6,state);
                         }
 
-                        else row.set(6,"E");
+                        //else row.set(6,"E");
                     }
                     //ssn
                     if(!(row.get(10).length()>=8 && row.get(10).length()<11 ) && !row.get(10).matches("[0-9]*")){
@@ -146,7 +146,7 @@ public class DuplicateDetection {
                            // System.out.println(input.get(0).get(10) + "2 " + ssn);
                             row.set(10,ssn);
                         }
-                        else row.set(10,"E");
+                        //else row.set(10,"E");
                     }
 
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class Duplicate2 {
 
     private static List<ArrayList<String>> input = new ArrayList<>();
-    public static String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\output\\csvOutput3.csv";
+    public static String sourcePath = "./src/main/output/csvOutput3.csv";
 
     public static void main(String[] args) throws IOException {
 
@@ -54,12 +54,26 @@ public class Duplicate2 {
 
         while (bufferedReader.ready() && (line = bufferedReader.readLine()) != null){
             String[] splitLine  = line.split(",");
-            String key = splitLine[7].trim().substring(0,1)+splitLine[3].substring(0,1);
+            String zip;
+            try {
+                zip = splitLine[7].trim().substring(0,1);
+            }
+            catch (StringIndexOutOfBoundsException e) {
+                zip = "";
+            }
+            String name;
+            try {
+                name = splitLine[3].trim().substring(0,1);
+            }
+            catch (StringIndexOutOfBoundsException e) {
+                name = "";
+            }
+            String key = zip + name;
             tuples.put((line.split(",")[0]),line+","+key);
         }
         HashMap<String, String> clone = new HashMap<>(tuples);
 
-        String csvOutput2 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\output\\csvOutput4.csv";
+        String csvOutput2 = "./src/main/output/csvOutput4.csv";
         FileWriter fileWriter = new FileWriter(csvOutput2);
 
         fileWriter.write("");
@@ -73,7 +87,7 @@ public class Duplicate2 {
 
            if (!(array1[0].matches(array2[0])) && (array1[array1.length-1].matches(array2[array2.length-1]))) {
                 if (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8) {
-                    if (mongeElkan.getSimilarity(array1[2], array2[2]) > 0.8) {
+                    if (mongeElkan.getSimilarity(array1[7], array2[7]) > 0.8) {
                         if (mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
                             if (mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
                                 //row.add(s + ", " + s3);
