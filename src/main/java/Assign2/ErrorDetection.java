@@ -8,19 +8,18 @@ import java.util.List;
 
 public class ErrorDetection {
 
-    private static List<ArrayList<String>> input = new ArrayList<ArrayList<String>>();
-    private static String csvOutput = "./src/main/output/csvOutput.csv";
-    private static String csvOutput2 = "./src/main/output/csvOutput2.csv";
+    private static List<ArrayList<String>> input = new ArrayList<>();
     private static USMap mapper = new USMap();
 
-    static int numberOfCol = 0;
+    private static int numberOfCol = 0;
 
     public static void main(String[] args) throws IOException {
 
 
         String sourcePath = "./src/main/resources/inputDB.csv";
+        String csvOutput = "./src/main/output/csvOutput.csv";
         FileWriter fileWriter = new FileWriter(csvOutput);
-        readData(sourcePath,true);
+        readData(sourcePath);
 
 
         fileWriter.write("");
@@ -67,7 +66,7 @@ public class ErrorDetection {
 */
     }
 
-    private static void readData(String filepath, boolean source){
+    private static void readData(String filepath){
 
         boolean header = true;
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
@@ -84,7 +83,7 @@ public class ErrorDetection {
                     for (int counter = 0; counter < numberOfCol; counter++) {
                         String attribute = "";
                         if(counter < split.length) attribute = split[counter].replace('"', ' ').trim();
-                        else row.add(counter, "E");
+                        //else row.add(counter, "E");
                         if(!attribute.equals("") && !attribute.equals(" ") && !attribute.matches(".*[a-z]+.*")) {
 
                                 row.add(counter, attribute);
@@ -93,6 +92,7 @@ public class ErrorDetection {
                             // E is added for Error
                             if((attribute.equals("") || !attribute.equals(" ")) && (counter == 2 || counter == 8 || counter == 9 ||counter == 11) || counter ==12) row.add(counter, "");
                             else row.add(counter, "E");
+                            //else row.add(counter, attribute);
                         }
                     }
                     //state
@@ -127,7 +127,7 @@ public class ErrorDetection {
     private static void createSchema(String[] split) {
 
         numberOfCol = split.length;
-        ArrayList<String> row = new ArrayList();
+        ArrayList<String> row = new ArrayList<>();
 
         for(int i = 0; i < split.length; i++) {
             // first cleaning:

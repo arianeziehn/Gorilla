@@ -18,6 +18,7 @@ public class USMap {
         mapper.put("Arizona".toUpperCase(),"AZ");
         mapper.put("Arkansas".toUpperCase(),"AR");
         mapper.put("California".toUpperCase(),"CA");
+        mapper.put("Cali".toUpperCase(), "CA");
         mapper.put("Colorado".toUpperCase(),"CO");
         mapper.put("Connecticut".toUpperCase(), "CT");
         mapper.put("Delaware".toUpperCase(),"DE");
