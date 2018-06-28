@@ -17,7 +17,10 @@ public class Duplicate2 {
 
     public static void main(String[] args) throws IOException {
 
+        long time1 = System.currentTimeMillis();
         findDuplicates();
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2-time1 + " ms");
 
 
 
@@ -73,7 +76,7 @@ public class Duplicate2 {
         }
         HashMap<String, String> clone = new HashMap<>(tuples);
 
-        String csvOutput2 = "./src/main/output/csvOutput4.csv";
+        String csvOutput2 = "./src/main/output/csvOutput6.csv";
         FileWriter fileWriter = new FileWriter(csvOutput2);
 
         fileWriter.write("");
@@ -86,10 +89,10 @@ public class Duplicate2 {
            String[] array2 = tupleClone.split(",");
 
            if (!(array1[0].matches(array2[0])) && (array1[array1.length-1].matches(array2[array2.length-1]))) {
-                if (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8) {
-                    if (mongeElkan.getSimilarity(array1[7], array2[7]) > 0.8) {
-                        if (mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
-                            if (mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
+               if ((array1[1].equals("")||array2[1].equals(""))|| (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8)) {
+                   if ((array1[7].equals("")||array2[7].equals(""))|| mongeElkan.getSimilarity(array1[7], array2[7]) > 0.8) {
+                       if ((array1[3].equals("")||array2[3].equals(""))||mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
+                           if ((array1[4].equals("")||array2[4].equals(""))|| mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
                                 //row.add(s + ", " + s3);
                                 //System.out.println(s + ", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2, s4));
                                 try {

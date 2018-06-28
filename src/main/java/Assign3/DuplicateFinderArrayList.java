@@ -15,13 +15,14 @@ import java.util.function.BiConsumer;
 public class DuplicateFinderArrayList {
 
     private static List<ArrayList<String>> input = new ArrayList<>();
-    public static String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\output\\csvOutput3.csv";
+    public static String sourcePath = "./src/main/output/csvOutput3.csv";
 
     public static void main(String[] args) throws IOException {
 
+        long time1 = System.currentTimeMillis();
         findDuplicates();
-
-
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2-time1 + " ms");
 
 /*
         for (ArrayList<String> anInput : input) {
@@ -61,29 +62,24 @@ public class DuplicateFinderArrayList {
 
         ArrayList<String> clone = (ArrayList<String>)tuples.clone();
 
-        String csvOutput2 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\output\\csvOutput4.csv";
+        String csvOutput2 = "./src/main/output/csvOutput5.csv";
         FileWriter fileWriter = new FileWriter(csvOutput2);
 
         fileWriter.write("");
         fileWriter.write("tuple_id_1, tuple_id_2\n");
 
-<<<<<<< HEAD:src/main/java/Assign3/DuplicateFinder.java
-
-        tuples.forEach((s, s2) -> clone.forEach((s3, s4) -> {
-=======
         // clone the extracted HAshMap to iterate over and compare with each tuple
         for(int i = 0; i < tuples.size()-1; i++) {
             for(int j = i+1; j < clone.size(); j++){
->>>>>>> 028f473ce1772e0c0b0b42f798d9598b7690e824:src/main/java/Assign3/DuplicateFinderArrayList.java
 
            String[] array1 = tuples.get(i).split(",");
            String[] array2 = clone.get(j).split(",");
 
            if (!(array1[0].matches(array2[0]))) {
-                if (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8) {
-                    if (mongeElkan.getSimilarity(array1[7], array2[7]) > 0.8) {
-                        if (mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
-                            if (mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
+               if ((array1[1].equals("")||array2[1].equals(""))|| (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8)) {
+                   if ((array1[7].equals("")||array2[7].equals(""))|| mongeElkan.getSimilarity(array1[7], array2[7]) > 0.8) {
+                       if ((array1[3].equals("")||array2[3].equals(""))||mongeElkan.getSimilarity(array1[3], array2[3]) > 0.8) {
+                           if ((array1[4].equals("")||array2[4].equals(""))|| mongeElkan.getSimilarity(array1[4], array2[4]) > 0.8) {
                                 //row.add(s + ", " + s3);
                                 //System.out.println(s + ", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2, s4));
                                 try {
