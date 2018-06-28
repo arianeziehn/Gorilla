@@ -12,10 +12,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-public class DuplicateFinder {
+public class DuplicateFinderArrayList {
 
     private static List<ArrayList<String>> input = new ArrayList<>();
-    public static String sourcePath = "./src/main/output/csvOutput3.csv";
+    public static String sourcePath = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\output\\csvOutput3.csv";
 
     public static void main(String[] args) throws IOException {
 
@@ -45,7 +45,7 @@ public class DuplicateFinder {
     }
     public static void findDuplicates() throws IOException {
         String line;
-        HashMap<String, String> tuples = new HashMap<>();
+        ArrayList<String> tuples = new ArrayList<>();
 
         ArrayList<String> row = new ArrayList<>(2);
 
@@ -55,20 +55,24 @@ public class DuplicateFinder {
         bufferedReader.readLine();
 
         while (bufferedReader.ready() && (line = bufferedReader.readLine()) != null){
-            tuples.put((line.split(",")[0]),line);
+            tuples.add(line);
         }
-        HashMap<String, String> clone = new HashMap<>(tuples);
 
-        String csvOutput2 = "./src/main/output/csvOutput4.csv";
+
+        ArrayList<String> clone = (ArrayList<String>)tuples.clone();
+
+        String csvOutput2 = "C:\\Users\\Ariane\\git\\Gorilla\\src\\main\\output\\csvOutput4.csv";
         FileWriter fileWriter = new FileWriter(csvOutput2);
 
         fileWriter.write("");
         fileWriter.write("tuple_id_1, tuple_id_2\n");
 
-        tuples.forEach((s, s2) -> clone.forEach((s3, s4) -> {
+        // clone the extracted HAshMap to iterate over and compare with each tuple
+        for(int i = 0; i < tuples.size()-1; i++) {
+            for(int j = i+1; j < clone.size(); j++){
 
-           String[] array1 = s2.split(",");
-           String[] array2 = s4.split(",");
+           String[] array1 = tuples.get(i).split(",");
+           String[] array2 = clone.get(j).split(",");
 
            if (!(array1[0].matches(array2[0]))) {
                 if (mongeElkan.getSimilarity(array1[1], array2[1]) > 0.8) {
@@ -78,7 +82,7 @@ public class DuplicateFinder {
                                 //row.add(s + ", " + s3);
                                 //System.out.println(s + ", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2, s4));
                                 try {
-                                    fileWriter.append(s).append(",").append(s3).append("\n");
+                                    fileWriter.append(array1[0]).append(",").append(array2[0]).append("\n");
                                     fileWriter.flush();
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -92,8 +96,8 @@ public class DuplicateFinder {
 
             //if ((mongeElkan.getSimilarity(s2,s4)) > 0.8){
             //    row.add(s +", " + s3 + ", MongeElkan: " + mongeElkan.getSimilarity(s2,s4));
-            //}
-        }));
+           }
+        }
 
         try {
 
